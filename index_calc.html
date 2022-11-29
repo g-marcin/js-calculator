@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator-zadanie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+<div id="main_wrapper">   
+
+    
+    <div class="kontener">
+        <div id="display"></div>
+    </div>
+    
+    <div class="keyboard">
+        <div class="kontener" >
+            <div onclick="action('&#40');" >(</div>
+            <div onclick="action('&#41');">)</div>
+            <div onclick="_per()">%</div>
+            <div onclick="_AC()";>AC</div>
+        </div>
+
+        <div class="kontener">
+            <div class="numBtn" onclick="_7()">7</div>
+            <div class="numBtn" onclick="_8()">8</div>
+            <div class="numBtn" onclick="_9()">9</div>
+            <div class="numBtn" onclick="_div()">/</div>
+        </div>
+
+        <div class="kontener">
+            <div class="numBtn" onclick="_4()">4</div>
+            <div class="numBtn" onclick="_5()">5</div>
+            <div class="numBtn" onclick="_6()">6</div>
+            <div onclick="_mul()">*</div>
+        </div>
+
+        <div class="kontener">
+            <div class="numBtn" onclick="clickBtn()">1</div>
+            <div class="numBtn" onclick="_2();">2</div>
+            <div class="numBtn" onclick="_3();">3</div>
+            <div  onclick="_sub()">-</div>
+        </div>
+
+        <div class="kontener">
+            <div class="numBtn" onclick="_0()">0</div>
+            <div onclick="_dot()">.</div>
+            <div onclick="_res()" >=</div>
+            <div onclick="_add()">+</div>
+        </div>
+    </div>
+
+</div> 
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
