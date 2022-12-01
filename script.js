@@ -3,28 +3,23 @@ let display = document.getElementById("display");
 // let buttons = document.getElementsByClassName("numBtn");
 
 // window.onload = init();
-let operation = {
-  first: 0,
-  second: 0,
-  res: 0,
-  mode: "",
-  sign: "",
-
-  clear: function () {
-    display.innerHTML = "";
-  },
-
-  read: function () {
-    return parseFloat(display.innerHTML);
-  },
-};
-
-function checkChar(word, char) {
-  for (let i = 0; i < word.length; i++) {
-    if (word[i] === char) return true;
-  }
-  return false;
+function Operation(){
+  this.first=0;
+  this.second=0;
+  this.result=0;
+  this.mode="";
+  this.sign="";
+  this.clearDisplay =   () => {display.innerHTML = "";};
+  this.read = () => {return parseFloat(display.innerHTML)};
 }
+
+let operation = new Operation();
+
+// // window.onload = setDisplay(5);
+// function getDisplayInnerHTML() {
+//   let display = document.getElementById("display");
+//   return display.innerHTML;
+// }
 
 // function init() {
 //   document.getElementById("main_wrapper").style.background = "crimson";
@@ -32,60 +27,87 @@ function checkChar(word, char) {
 //   numbers.console.log(numbers);
 // }
 
+window.addEventListener("keydown", (event)=>{
+let key = event.key;
+let regexp1 = /[0-9]/
+if (regexp1.test(key)){
+  clickDigitBtn(key)
+}else {null}
+let regexp2 = /^[\/*|\-*|\+*|\**]$/;
+if (regexp2.test(key)){
+  clickOperatorBtn(key)
+}
+
+if (event.key=="c"){
+  clickDigitBtn("AC");
+}
+
+if(event.key=="Enter"){
+  clickResultBtn()
+}
+
+if(event.key=="Backspace"){
+  let view = display.innerText;
+  length = view.length;
+  display.innerHTML=view.slice(0,length-1);
+  console.log("bs");
+}
+
+if(event.key=="%"){
+  clickDigitBtn("percent");
+}
+if(event.key=="."){
+  clickDigitBtn("dot");
+}
+
+
+
+
+});
+
+
 function clickDigitBtn(digit) {
   switch (digit) {
     case "dot":
-      display.innerHTML == ""
-        ? operation.clear()
-        : checkChar(display.innerHTML, ".")
-        ? null
-        : (display.innerHTML += ".");
+      if (display.innerHTML == "") {
+        operation.clearDisplay();
+      } else if (!display.innerHTML.includes(".")) {
+        display.innerHTML += ".";
+      } 
       operation.mode = "typing";
       break;
     case "percent":
-      display.innerHTML == ""
-        ? operation.clear()
-        : (display.innerHTML = (operation.read() * 0.01).toFixed(2));
+      display.innerHTML == "" ? operation.clearDisplay() : (display.innerHTML = (operation.read() * 0.01).toFixed(2));
       break;
     case "AC":
-      display.innerHTML = "";
-      operation.result = 0;
-      operation.first = 0;
-      operation.second = 0;
-      operation.mode = "";
-      operation.sign = "";
+      operation = new Operation();
+      operation.clearDisplay();
       break;
     case "0":
-      operation.mode == "result" ? operation.clear() : null;
+      operation.mode == "result" ? operation.clearDisplay() : null;
       display.innerHTML == digit ? null : (display.innerHTML += digit);
       break;
     default:
-      operation.mode == "result" ? operation.clear() : null;
-      display.innerHTML == toString(digit)
-        ? (display.innerHTML = digit)
-        : (display.innerHTML += digit);
+      operation.mode == "result" ? operation.clearDisplay() : null;
+      display.innerHTML == toString(digit) ? (display.innerHTML = digit) : (display.innerHTML += digit);
   }
 }
 
 function clickOperatorBtn(operator) {
+  if (display.innerHTML) operation.first = operation.read();
   operation.mode = "typing";
-  operation.first = operation.read();
-  operation.clear();
+  operation.clearDisplay();
   operation.sign = operator;
 }
 
-function _result() {
+function clickResultBtn() {
   if (operation.mode == "result") {
-    operation.result = eval(
-      `operation.result${operation.sign}operation.second`
-    );
+    operation.result = eval(`operation.result${operation.sign}operation.second`);
   }
   if (operation.mode == "typing") {
     if (display.innerHTML != "") {
       operation.second = operation.read();
-      operation.result = eval(
-        `${operation.first} ${operation.sign} ${operation.second}`
-      );
+      operation.result = eval(`${operation.first} ${operation.sign} ${operation.second}`);
       operation.mode = "result";
     } else null;
   }
