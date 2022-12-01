@@ -3,10 +3,13 @@ basic calculator in Javascript.
 
 Done as a part of javascript event handling learning process.
 
+
+
 # Calculator 1,1 
 Now operations can be done with keybord.
 
-() parentheses to be added in next release.
+() parentheses to be added in next release.Stay tuned.
+
 
 Best Regards
 g-marcin
