@@ -1,13 +1,17 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bolder;
+}
+
 div.Container {
   background: rgb(254, 255, 187);
-  width: 100%;
-
-  text-align: justify;
 
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  min-width: 10%;
+
+  align-content: center;
+  justify-content: center;
 }
 
 div > #display {
@@ -18,6 +22,8 @@ div > #display {
   width: 100%;
   margin: 15px;
   min-width: 20%;
+  text-align: end;
+  font-size: 10vh;
 }
 
 div.Container > div:not(#display) {
@@ -27,15 +33,15 @@ div.Container > div:not(#display) {
   border-radius: 12px;
   width: fit-content;
   padding: 3px;
-  margin: 15px;
   width: 20%;
   min-width: fit-content;
   height: 30px;
-  /* font-size: 1.2vw; */
+
   text-align: center;
-  vertical-align: middle;
-  /* margin-left: 20px; */
+
   font-size: 24px;
+  font-weight: bold;
+  margin: 2px;
 }
 
 div.Container > div:not(#display):hover {
@@ -47,7 +53,7 @@ div.Container > div:not(#display):hover {
   width: 20%;
   border: 1px solid greenyellow;
   background: gainsboro;
-  padding: 20px;
+  padding: 5px;
   min-width: 50%;
   text-align: justify;
 }
