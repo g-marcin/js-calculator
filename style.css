@@ -23,7 +23,7 @@ div > #display {
   margin: 15px;
   min-width: 20%;
   text-align: end;
-  font-size: 10vh;
+  font-size: 20px;
 }
 
 div.Container > div:not(#display) {
